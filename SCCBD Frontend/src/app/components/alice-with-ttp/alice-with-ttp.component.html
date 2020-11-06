@@ -1,0 +1,25 @@
+<form [formGroup]="myForm1" (ngSubmit)="postNewMessageToBob(myForm1.value)">
+    <h2>Enviar un mensaje a Alice:</h2>
+    <hr>
+    <h6>Este escenario consiste en un canal no confiable y entidades no honestas.</h6>
+    <h6>Alice envía un mensaje a Bob pero Bob tiene que pedir la clave a la TTP para descifrarlo.</h6>
+    <hr>
+    <input type="text" formControlName="texttoadd" placeholder="Escribe una frase o palabra">
+    <label *ngIf="myForm1.get('texttoadd').hasError('required') && myForm1.get('texttoadd').touched">
+        ¡Debes escribir algo!
+    </label>
+
+    <br> <br />
+
+    <button class="btn btn-success" type="submit" [disabled]="!myForm1.valid">Enviar</button>
+
+    <br> <br />
+
+    <ul *ngIf="showList == true">
+        <h3>Textos enviados:</h3>
+        <li *ngFor="let singleText of textsList">
+            {{singleText}}
+        </li>
+    </ul>
+
+</form>

@@ -1,0 +1,27 @@
+<h2>Enviar un nuevo texto a la API:</h2>
+<hr>
+<h6>Este escenario consiste en un canal con cifrado simétrico.</h6>
+<h6>Alice envía un mensaje crifrado a Bob junto el IV para que Bob pueda descifrarlo.</h6>
+<hr>
+<form [formGroup]="myForm1" (ngSubmit)="postNewText(myForm1.value)">
+    <input type="text" formControlName="texttoadd" placeholder="Escribe una frase o palabra">
+    <label *ngIf="myForm1.get('texttoadd').hasError('required') && myForm1.get('texttoadd').touched">
+        ¡Debes escribir algo!
+    </label>
+
+    <br> <br />
+
+    <button class="btn btn-success" type="submit" [disabled]="!myForm1.valid">Enviar</button>
+
+    <br> <br />
+
+    <ul *ngIf="showList == true">
+        <h3>Textos enviados:</h3>
+        <li *ngFor="let singleText of textsList">
+            {{singleText}}
+        </li>
+    </ul>
+
+</form>
+
+<button class="btn btn-primary" (click)="getTexts()">Consultar</button>
